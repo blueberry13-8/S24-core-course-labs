@@ -31,10 +31,13 @@ The code is organized into the following components:
 
 - The application uses the `pytz` library to handle time zones, ensuring accurate and reliable time information.
 
-### Testing
+### Unit tests
 
-- A simple unit test is implemented in the `tests/test_app.py` file to ensure the correct format of the displayed time.
-- The accuracy of the time values was verified by refreshing the webpage multiple times with varying delays. The test was successful.
+- Unit tests are implemented in the `tests/test_app.py` file:
+  - Correct format of the displayed time.
+  - Correctness of the time value obtained from the system and the application.
+  - Time difference between two requests is equal to the specified duration.
+- The accuracy of the time values was verified by manual refreshing the webpage multiple times with varying delays. The test was successful.
 
 ## Testing
 
@@ -43,8 +46,6 @@ To run the tests, execute the following command:
 ```bash
 python -m unittest tests.test_app.py
 ```
-
-This will validate that the time format conforms to the expected 'YYYY-MM-DD HH:MM:SS' standard.
 
 ## Running the Application
 To run the application locally, use the following command:
