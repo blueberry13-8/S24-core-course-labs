@@ -1,20 +1,5 @@
-- name: Task 2
+- name: Install and Deploy Docker
   hosts: localhost
   become: True
   roles:
-    # - geerlingguy.docker # Task 1
-    # - {role: ../../roles/docker} # Task 2
-    - docker
-  tasks:
-    - name: Pull Docker Image
-      docker_image:
-        name: blbr13/app-flask:lab2
-        source: pull
-
-    - name: Run Docker Container
-      docker_container:
-        name: moscow-time
-        image: blbr13/app-flask:lab2
-        state: started
-        ports:
-          - "8080:5000"
+    - web_app
