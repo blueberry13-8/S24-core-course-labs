@@ -1,9 +1,19 @@
 from flask import Flask, render_template
-from datetime import datetime
+from prometheus_client import Counter, generate_latest
+from prometheus_client.core import REGISTRY
 import pytz
-
+import logging
+from datetime import datetime
 
 app = Flask(__name__)
+
+# Logging configuration
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Prometheus metrics
+REQUEST_COUNT = Counter('app_requests_total', 'Total number of '
+                        'requests received by application')
 
 
 def get_time():
@@ -28,7 +38,20 @@ def show_time():
     Returns:
         render_template: Renders the index.html template with the current time.
     """
+    REQUEST_COUNT.inc()
+    logger.info('Homepage accessed')
     return render_template('./index.html', time=get_time())
+
+
+@app.route('/metrics')
+def metrics():
+    """
+    Endpoint to expose Prometheus metrics.
+
+    Returns:
+        str: Prometheus-formatted metrics.
+    """
+    return generate_latest(REGISTRY)
 
 
 if __name__ == "__main__":
