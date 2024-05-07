@@ -28,6 +28,8 @@ python app.py
 
 3. Open your browser and visit http://localhost:5000 to see the current time in Moscow.
 
+4. Check number of visits on the homepage on the http://localhost:5000/visits
+
 ## Setup via docker
 
 ### Build
@@ -39,7 +41,7 @@ docker build -t app-flask .
 ### Pull and Run from Dockerhub
 If you prefer to use a pre-built Docker image from Dockerhub. Pull the Docker Image:
 ```bash
-docker pull blbr13/app-flask:lab2
+docker pull blbr13/app-flask:lab12
 ```
 
 ### Run Container
